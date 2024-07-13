@@ -1,1 +1,213 @@
-Hallo Welt
+
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unsere Boutique</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #E0E0E0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            padding: 1em 0;
+            background-color: #1E1E1E;
+            border-bottom: 2px solid #FFD700;
+        }
+
+        header h1, header h2 {
+            margin: 0;
+            color: #FFD700;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 1em;
+            text-align: center;
+            border-bottom: 2px solid #FFD700;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 1em;
+        }
+
+        nav ul li a {
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5em 1em;
+            border: 2px solid #FFD700;
+            border-radius: 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #FFD700;
+            color: #121212;
+        }
+
+        main {
+            padding: 2em;
+        }
+
+        main h2 {
+            color: #FFD700;
+        }
+
+        main p, main ul {
+            line-height: 1.6;
+        }
+
+        main ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        main ul li {
+            margin: 0.5em 0;
+        }
+
+        button {
+            background-color: #FFD700;
+            color: #121212;
+            border: none;
+            padding: 0.5em 1em;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 1em;
+            border-radius: 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        button:hover {
+            background-color: #FFC700;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1em 0;
+            background-color: #1E1E1E;
+            color: #FFD700;
+            border-top: 2px solid #FFD700;
+        }
+
+        #bilder {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1em;
+            justify-content: center;
+        }
+
+        #bilder img {
+            max-width: calc(25% - 1em);
+            cursor: pointer;
+            transition: transform 0.3s;
+            border-radius: 10px;
+        }
+
+        #bilder img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>SHB</h1>
+        <h2>Saulgau für Saulgau</h2>
+    </header>
+    <main>
+        <section id="willkommen">
+            <h2>Herzlich willkommen in unserer Boutique!</h2>
+            <p>Entdecke exklusive Mode und Accessoires aus zweiter Hand in unserer einzigartigen Welt.</p>
+        </section>
+        <section id="botschaft">
+            <h2>Unsere Botschaft</h2>
+            <p>Wir nehmen nur Spenden an und kaufen nichts an. Dies ist ein gemeinnütziger Laden, und alle Gewinne werden nach Abzug der Betriebskosten an wohltätige Organisationen in Bad Saulgau gespendet.</p>
+        </section>
+        <section id="produkte">
+            <h2>Unsere Produkte</h2>
+            <div id="bilder">
+                <img class="carousel-img" src="https://i.ibb.co/0CLJ8Nw/07cacf1b-db96-49e6-ada5-0bed67489051.jpg" alt="Produkt 1" onclick="showImage(this.src)">
+                <img class="carousel-img" src="https://i.ibb.co/KKKmQ0M/4bebee8b-5e82-4486-8b8c-ecdd08264a1a.jpg" alt="Produkt 2" onclick="showImage(this.src)">
+                <img class="carousel-img" src="https://i.ibb.co/J2hznR5/64ecda43-2df4-410a-9444-c779c9601ac0.jpg" alt="Produkt 3" onclick="showImage(this.src)">
+                <img class="carousel-img" src="https://i.ibb.co/LgG8XnZ/a122d3a7-e4b1-482a-a902-30aa5b8bab47.jpg" alt="Produkt 4" onclick="showImage(this.src)">
+                <img class="carousel-img" src="https://i.ibb.co/D83XSd1/875259f2-0fa7-411a-b880-42d5ea012a88.jpg" alt="Produkt 5" onclick="showImage(this.src)">
+                <img class="carousel-img" src="https://i.ibb.co/FnPRyns/c82f634a-7a0d-49a7-a92d-13414085b29e.jpg" alt="Produkt 6" onclick="showImage(this.src)">
+                <img class="carousel-img" src="https://i.ibb.co/Dz8VXJz/f48abac9-ed3d-4fdd-afc3-6989ee075330.jpg" alt="Produkt 7" onclick="showImage(this.src)">
+                <img class="carousel-img" src="https://i.ibb.co/brPgQTz/abfd36cb-8c86-41a0-8502-185d1ef1d89a.jpg" alt="Produkt 8" onclick="showImage(this.src)">
+                <img class="carousel-img" src="https://i.ibb.co/Wz78xRK/a8856df4-cbba-420f-a1a1-5cfaec9d52a4.jpg" alt="Produkt 9" onclick="showImage(this.src)">
+                <img class="carousel-img" src="https://i.ibb.co/R7wpLyx/97cd1b01-45af-48c0-b68c-15a998255a3b.jpg" alt="Produkt 10" onclick="showImage(this.src)">
+                <img  class="carousel-img" src="https://i.ibb.co/y02G9kB/c261f422-e495-442e-9170-0d2b04c7ec27.jpg" alt="Produkt 11" onclick="showImage(this.src)">
+                <img class="carousel-img" src="https://i.ibb.co/vZ74NWj/aaca96f6-307f-42e7-9032-93f15b14e3f6.jpg" alt="Produkt 12" onclick="showImage(this.src)">
+                <img class="carousel-img" src="https://i.ibb.co/sQmhX1z/0c30867d-421a-4a2c-8f08-c38642c51dbe.jpg" alt="Produkt 13" onclick="showImage(this.src)">
+                <img class="carousel-img" src="https://i.ibb.co/SPLp2NQ/9c0e6e9a-99d1-42f2-8fab-777a0c357338.jpg" alt="Produkt 14" onclick="showImage(this.src)">
+                <img class="carousel-img" src="https://i.ibb.co/HNVY3fH/163cc827-58e1-4fbb-bb3d-f1129a9966e3.jpg" alt="Produkt 15" onclick="showImage(this.src)">
+                <img class="carousel-img" src="https://i.ibb.co/w7s9jd5/b9bd08d4-e853-4778-bfa9-927db987d791.jpg" alt="Produkt 16" onclick="showImage(this.src)">
+            </div>
+        </section>
+        <section id="oeffnungszeiten">
+            <h2>Öffnungszeiten</h2>
+            <ul>
+                <li>Montag: 09:00–12:15, 14:00–17:00</li>
+                <li>Dienstag: 09:00–12:15</li>
+                <li>Mittwoch: 09:00–12:15, 14:00–17:00</li>
+                <li>Donnerstag: 09:00–12:15</li>
+                <li>Freitag: 09:00–12:15, 14:00–17:00</li>
+                <li>Samstag: 09:00–12:15</li>
+                <li>Sonntag: Geschlossen</li>
+            </ul>
+            <button onclick="window.location.href='tel:+4975829960893'">Anrufen: +49 7582 9960893</button>
+        </section>
+        <section id="karte">
+            <h2>Zur Karte</h2>
+            <p>Hier können Sie unseren Standort auf der Karte finden:</p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2519.5792253931183!2d9.507826315741091!3d48.01689997921139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4799f0f5aa7662c5%3A0x4332fbb7c0149c6e!2sBad%20Saulgau!5e0!3m2!1sde!2sde!4v1592284203026!5m2!1sde!2sde" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Unsere Boutique. Alle Rechte vorbehalten.</p>
+    </footer>
+
+    <script>
+        function showImage(src) {
+            var overlay = document.createElement("div");
+            overlay.style.position = "fixed";
+            overlay.style.top = "0";
+            overlay.style.left = "0";
+            overlay.style.width = "100%";
+            overlay.style.height = "100%";
+            overlay.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+            overlay.style.display = "flex";
+            overlay.style.justifyContent = "center";
+            overlay.style.alignItems = "center";
+            overlay.style.zIndex = "9999";
+            overlay.onclick = function() {
+                document.body.removeChild(overlay);
+            };
+            
+            var img = document.createElement("img");
+            img.src = src;
+            img.style.maxWidth = "90%";
+            img.style.maxHeight = "90%";
+            img.style.border = "5px solid white";
+            
+            overlay.appendChild(img);
+            document.body.appendChild(overlay);
+        }
+    </script>
+</body>
+</html>
