@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -12,6 +11,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            overflow-x: hidden;
         }
 
         header {
@@ -106,13 +106,13 @@
 
         #bilder {
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             gap: 1em;
-            justify-content: center;
+            overflow-x: scroll;
         }
 
         #bilder img {
-            max-width: calc(25% - 1em);
+            max-width: 25%;
             cursor: pointer;
             transition: transform 0.3s;
             border-radius: 10px;
@@ -120,6 +120,79 @@
 
         #bilder img:hover {
             transform: scale(1.05);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .close:hover, .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        @media (max-width: 600px) {
+            #bilder img {
+                max-width: 100%;
+                flex: 0 0 100%;
+            }
+
+            .modal-content {
+                width: 90%;
+            }
         }
     </style>
 </head>
@@ -141,22 +214,22 @@
         <section id="produkte">
             <h2>Unsere Produkte</h2>
             <div id="bilder">
-                <img class="carousel-img" src="https://i.ibb.co/0CLJ8Nw/07cacf1b-db96-49e6-ada5-0bed67489051.jpg" alt="Produkt 1" onclick="showImage(this.src)">
-                <img class="carousel-img" src="https://i.ibb.co/KKKmQ0M/4bebee8b-5e82-4486-8b8c-ecdd08264a1a.jpg" alt="Produkt 2" onclick="showImage(this.src)">
-                <img class="carousel-img" src="https://i.ibb.co/J2hznR5/64ecda43-2df4-410a-9444-c779c9601ac0.jpg" alt="Produkt 3" onclick="showImage(this.src)">
-                <img class="carousel-img" src="https://i.ibb.co/LgG8XnZ/a122d3a7-e4b1-482a-a902-30aa5b8bab47.jpg" alt="Produkt 4" onclick="showImage(this.src)">
-                <img class="carousel-img" src="https://i.ibb.co/D83XSd1/875259f2-0fa7-411a-b880-42d5ea012a88.jpg" alt="Produkt 5" onclick="showImage(this.src)">
-                <img class="carousel-img" src="https://i.ibb.co/FnPRyns/c82f634a-7a0d-49a7-a92d-13414085b29e.jpg" alt="Produkt 6" onclick="showImage(this.src)">
-                <img class="carousel-img" src="https://i.ibb.co/Dz8VXJz/f48abac9-ed3d-4fdd-afc3-6989ee075330.jpg" alt="Produkt 7" onclick="showImage(this.src)">
-                <img class="carousel-img" src="https://i.ibb.co/brPgQTz/abfd36cb-8c86-41a0-8502-185d1ef1d89a.jpg" alt="Produkt 8" onclick="showImage(this.src)">
-                <img class="carousel-img" src="https://i.ibb.co/Wz78xRK/a8856df4-cbba-420f-a1a1-5cfaec9d52a4.jpg" alt="Produkt 9" onclick="showImage(this.src)">
-                <img class="carousel-img" src="https://i.ibb.co/R7wpLyx/97cd1b01-45af-48c0-b68c-15a998255a3b.jpg" alt="Produkt 10" onclick="showImage(this.src)">
-                <img class="carousel-img" src="https://i.ibb.co/y02G9kB/c261f422-e495-442e-9170-0d2b04c7ec27.jpg" alt="Produkt 11" onclick="showImage(this.src)">
-                <img class="carousel-img" src="https://i.ibb.co/vZ74NWj/aaca96f6-307f-42e7-9032-93f15b14e3f6.jpg" alt="Produkt 12" onclick="showImage(this.src)">
-                <img class="carousel-img" src="https://i.ibb.co/sQmhX1z/0c30867d-421a-4a2c-8f08-c38642c51dbe.jpg" alt="Produkt 13" onclick="showImage(this.src)">
-                <img class="carousel-img" src="https://i.ibb.co/SPLp2NQ/9c0e6e9a-99d1-42f2-8fab-777a0c357338.jpg" alt="Produkt 14" onclick="showImage(this.src)">
-                <img class="carousel-img" src="https://i.ibb.co/HNVY3fH/163cc827-58e1-4fbb-bb3d-f1129a9966e3.jpg" alt="Produkt 15" onclick="showImage(this.src)">
-                <img class="carousel-img" src="https://i.ibb.co/w7s9jd5/b9bd08d4-e853-4778-bfa9-927db987d791.jpg" alt="Produkt 16" onclick="showImage(this.src)">
+                <img src="https://i.ibb.co/0CLJ8Nw/07cacf1b-db96-49e6-ada5-0bed67489051.jpg" alt="Produkt 1" onclick="openModal();currentSlide(1)">
+                <img src="https://i.ibb.co/KKKmQ0M/4bebee8b-5e82-4486-8b8c-ecdd08264a1a.jpg" alt="Produkt 2" onclick="openModal();currentSlide(2)">
+                <img src="https://i.ibb.co/J2hznR5/64ecda43-2df4-410a-9444-c779c9601ac0.jpg" alt="Produkt 3" onclick="openModal();currentSlide(3)">
+                <img src="https://i.ibb.co/LgG8XnZ/a122d3a7-e4b1-482a-a902-30aa5b8bab47.jpg" alt="Produkt 4" onclick="openModal();currentSlide(4)">
+                <img src="https://i.ibb.co/D83XSd1/875259f2-0fa7-411a-b880-42d5ea012a88.jpg" alt="Produkt 5" onclick="openModal();currentSlide(5)">
+                <img src="https://i.ibb.co/FnPRyns/c82f634a-7a0d-49a7-a92d-13414085b29e.jpg" alt="Produkt 6" onclick="openModal();currentSlide(6)">
+                <img src="https://i.ibb.co/Dz8VXJz/f48abac9-ed3d-4fdd-afc3-6989ee075330.jpg" alt="Produkt 7" onclick="openModal();currentSlide(7)">
+                <img src="https://i.ibb.co/brPgQTz/abfd36cb-8c86-41a0-8502-185d1ef1d89a.jpg" alt="Produkt 8" onclick="openModal();currentSlide(8)">
+                <img src="https://i.ibb.co/Wz78xRK/a8856df4-cbba-420f-a1a1-5cfaec9d52a4.jpg" alt="Produkt 9" onclick="openModal();currentSlide(9)">
+                <img src="https://i.ibb.co/R7wpLyx/97cd1b01-45af-48c0-b68c-15a998255a3b.jpg" alt="Produkt 10" onclick="openModal();currentSlide(10)">
+                <img src="https://i.ibb.co/y02G9kB/c261f422-e495-442e-9170-0d2b04c7ec27.jpg" alt="Produkt 11" onclick="openModal();currentSlide(11)">
+                <img src="https://i.ibb.co/vZ74NWj/aaca96f6-307f-42e7-9032-93f15b14e3f6.jpg" alt="Produkt 12" onclick="openModal();currentSlide(12)">
+                <img src="https://i.ibb.co/sQmhX1z/0c30867d-421a-4a2c-8f08-c38642c51dbe.jpg" alt="Produkt 13" onclick="openModal();currentSlide(13)">
+                <img src="https://i.ibb.co/SPLp2NQ/9c0e6e9a-99d1-42f2-8fab-777a0c357338.jpg" alt="Produkt 14" onclick="openModal();currentSlide(14)">
+                <img src="https://i.ibb.co/HNVY3fH/163cc827-58e1-4fbb-bb3d-f1129a9966e3.jpg" alt="Produkt 15" onclick="openModal();currentSlide(15)">
+                <img src="https://i.ibb.co/w7s9jd5/b9bd08d4-e853-4778-bfa9-927db987d791.jpg" alt="Produkt 16" onclick="openModal();currentSlide(16)">
             </div>
         </section>
         <section id="oeffnungszeiten">
@@ -179,10 +252,70 @@
     <footer>
         <p>&copy; 2023 Unsere Boutique. Alle Rechte vorbehalten.</p>
     </footer>
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01">
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
     <script>
-        function showImage(src) {
-            window.open(src, '_blank');
+        // Cookie notification
+        window.onload = function() {
+            let consent = localStorage.getItem('cookieConsent');
+            if (!consent) {
+                let consentBanner = document.createElement('div');
+                consentBanner.innerHTML = `
+                    <div style="background-color: #FFD700; color: #121212; padding: 1em; text-align: center; position: fixed; bottom: 0; width: 100%; z-index: 1000;">
+                        Diese Webseite verwendet Cookies, um sicherzustellen, dass Sie die beste Erfahrung auf unserer Webseite erhalten.
+                        <button onclick="acceptCookies()">Akzeptieren</button>
+                        <button onclick="declineCookies()">Ablehnen</button>
+                    </div>`;
+                document.body.appendChild(consentBanner);
+            }
         }
+
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'accepted');
+            document.querySelector('[style*="position: fixed"]').remove();
+        }
+
+        function declineCookies() {
+            localStorage.setItem('cookieConsent', 'declined');
+            document.querySelector('[style*="position: fixed"]').remove();
+        }
+
+        // Modal image gallery
+        var slideIndex = 1;
+
+        function openModal() {
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("carousel-img");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            var modalImg = document.getElementById("img01");
+            modalImg.src = slides[slideIndex-1].src;
+        }
+
+        // Set the first slide as the modal image source on load
+        window.onload = function() {
+            showSlides(slideIndex);
+        };
     </script>
 </body>
 </html>
