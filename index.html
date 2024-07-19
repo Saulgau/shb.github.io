@@ -1,321 +1,419 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unsere Boutique</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SHB - Saulgau für Saulgau</title>
     <style>
-        body {
-            background-color: #121212;
-            color: #E0E0E0;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
+      :root {
+        --primary-color: #ffd700;
+        --background-color: #121212;
+        --text-color: #e0e0e0;
+        --secondary-background: #1e1e1e;
+      }
 
-        header {
-            text-align: center;
-            padding: 1em 0;
-            background-color: #1E1E1E;
-            border-bottom: 2px solid #FFD700;
-        }
+      body {
+        background-color: var(--background-color);
+        color: var(--text-color);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+      }
 
-        header h1, header h2 {
-            margin: 0;
-            color: #FFD700;
-        }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
 
-        nav {
-            background-color: #333;
-            padding: 1em;
-            text-align: center;
-            border-bottom: 2px solid #FFD700;
+      header {
+        background-color: var(--secondary-background);
+        padding: 20px 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo h1 {
+        margin: 0;
+        font-size: 2.5rem;
+        color: var(--primary-color);
+      }
+
+      .logo h2 {
+        margin: 0;
+        font-size: 1.2rem;
+        color: var(--text-color);
+      }
+
+      nav ul {
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+      }
+
+      nav ul li {
+        margin-left: 20px;
+      }
+
+      nav ul li a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+      }
+
+      nav ul li a:hover {
+        color: var(--primary-color);
+      }
+
+      main {
+        padding: 40px 0;
+      }
+
+      section {
+        margin-bottom: 40px;
+      }
+
+      h2 {
+        color: var(--primary-color);
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .gallery img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+      }
+
+      .gallery img:hover {
+        transform: scale(1.05);
+      }
+
+      .hours-list {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .hours-list li {
+        margin-bottom: 10px;
+      }
+
+      .map-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+      }
+
+      .map-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+
+      footer {
+        background-color: var(--secondary-background);
+        color: var(--text-color);
+        text-align: center;
+        padding: 20px 0;
+        margin-top: 40px;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+      }
+
+      .modal-content {
+        margin: auto;
+        display: block;
+        max-width: 80%;
+        max-height: 80%;
+      }
+
+      .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .prev,
+      .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        margin-top: -50px;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+
+      .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+      }
+
+      .prev:hover,
+      .next:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+
+      @media (max-width: 768px) {
+        .header-content {
+          flex-direction: column;
+          text-align: center;
         }
 
         nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
+          margin-top: 20px;
         }
 
         nav ul li {
-            display: inline;
-            margin: 0 1em;
+          margin: 0 10px;
         }
-
-        nav ul li a {
-            color: #FFD700;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 0.5em 1em;
-            border: 2px solid #FFD700;
-            border-radius: 10px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        nav ul li a:hover {
-            background-color: #FFD700;
-            color: #121212;
-        }
-
-        main {
-            padding: 2em;
-        }
-
-        main h2 {
-            color: #FFD700;
-        }
-
-        main p, main ul {
-            line-height: 1.6;
-        }
-
-        main ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        main ul li {
-            margin: 0.5em 0;
-        }
-
-        button {
-            background-color: #FFD700;
-            color: #121212;
-            border: none;
-            padding: 0.5em 1em;
-            cursor: pointer;
-            font-size: 1em;
-            margin-top: 1em;
-            border-radius: 10px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        button:hover {
-            background-color: #FFC700;
-        }
-
-        footer {
-            text-align: center;
-            padding: 1em 0;
-            background-color: #1E1E1E;
-            color: #FFD700;
-            border-top: 2px solid #FFD700;
-        }
-
-        #bilder {
-            display: flex;
-            flex-wrap: nowrap;
-            gap: 1em;
-            overflow-x: scroll;
-        }
-
-        #bilder img {
-            max-width: 25%;
-            cursor: pointer;
-            transition: transform 0.3s;
-            border-radius: 10px;
-        }
-
-        #bilder img:hover {
-            transform: scale(1.05);
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.9);
-        }
-
-        .modal-content {
-            margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 700px;
-        }
-
-        .close {
-            position: absolute;
-            top: 20px;
-            right: 35px;
-            color: #fff;
-            font-size: 40px;
-            font-weight: bold;
-        }
-
-        .close:hover, .close:focus {
-            color: #bbb;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            padding: 16px;
-            margin-top: -22px;
-            color: white;
-            font-weight: bold;
-            font-size: 20px;
-            transition: 0.6s ease;
-            border-radius: 0 3px 3px 0;
-            user-select: none;
-        }
-
-        .next {
-            right: 0;
-            border-radius: 3px 0 0 3px;
-        }
-
-        .prev {
-            left: 0;
-        }
-
-        .prev:hover, .next:hover {
-            background-color: rgba(0,0,0,0.8);
-        }
-
-        @media (max-width: 600px) {
-            #bilder img {
-                max-width: 100%;
-                flex: 0 0 100%;
-            }
-
-            .modal-content {
-                width: 90%;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <h1>SHB</h1>
-        <h2>Saulgau für Saulgau</h2>
+      <div class="container header-content">
+        <div class="logo">
+          <h1>SHB</h1>
+          <h2>Saulgau für Saulgau</h2>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#willkommen">Startseite</a></li>
+            <li><a href="#botschaft">Über uns</a></li>
+            <li><a href="#produkte">Produkte</a></li>
+            <li><a href="#oeffnungszeiten">Öffnungszeiten</a></li>
+            <li><a href="#karte">Anfahrt</a></li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
-    <main>
-        <section id="willkommen">
-            <h2>Herzlich willkommen in unserer Boutique!</h2>
-            <p>Entdecke exklusive Mode und Accessoires aus zweiter Hand in unserer einzigartigen Welt.</p>
-        </section>
-        <section id="botschaft">
-            <h2>Unsere Botschaft</h2>
-            <p>Wir nehmen nur Spenden an und kaufen nichts an. Dies ist ein gemeinnütziger Laden, und alle Gewinne werden nach Abzug der Betriebskosten an wohltätige Organisationen in Bad Saulgau gespendet.</p>
-        </section>
-        <section id="produkte">
-            <h2>Unsere Produkte</h2>
-            <div id="bilder">
-                <img src="https://i.ibb.co/0CLJ8Nw/07cacf1b-db96-49e6-ada5-0bed67489051.jpg" alt="Produkt 1" onclick="openModal();currentSlide(1)">
-                <img src="https://i.ibb.co/KKKmQ0M/4bebee8b-5e82-4486-8b8c-ecdd08264a1a.jpg" alt="Produkt 2" onclick="openModal();currentSlide(2)">
-                <img src="https://i.ibb.co/J2hznR5/64ecda43-2df4-410a-9444-c779c9601ac0.jpg" alt="Produkt 3" onclick="openModal();currentSlide(3)">
-                <img src="https://i.ibb.co/LgG8XnZ/a122d3a7-e4b1-482a-a902-30aa5b8bab47.jpg" alt="Produkt 4" onclick="openModal();currentSlide(4)">
-                <img src="https://i.ibb.co/D83XSd1/875259f2-0fa7-411a-b880-42d5ea012a88.jpg" alt="Produkt 5" onclick="openModal();currentSlide(5)">
-                <img src="https://i.ibb.co/FnPRyns/c82f634a-7a0d-49a7-a92d-13414085b29e.jpg" alt="Produkt 6" onclick="openModal();currentSlide(6)">
-                <img src="https://i.ibb.co/Dz8VXJz/f48abac9-ed3d-4fdd-afc3-6989ee075330.jpg" alt="Produkt 7" onclick="openModal();currentSlide(7)">
-                <img src="https://i.ibb.co/brPgQTz/abfd36cb-8c86-41a0-8502-185d1ef1d89a.jpg" alt="Produkt 8" onclick="openModal();currentSlide(8)">
-                <img src="https://i.ibb.co/Wz78xRK/a8856df4-cbba-420f-a1a1-5cfaec9d52a4.jpg" alt="Produkt 9" onclick="openModal();currentSlide(9)">
-                <img src="https://i.ibb.co/R7wpLyx/97cd1b01-45af-48c0-b68c-15a998255a3b.jpg" alt="Produkt 10" onclick="openModal();currentSlide(10)">
-                <img src="https://i.ibb.co/y02G9kB/c261f422-e495-442e-9170-0d2b04c7ec27.jpg" alt="Produkt 11" onclick="openModal();currentSlide(11)">
-                <img src="https://i.ibb.co/vZ74NWj/aaca96f6-307f-42e7-9032-93f15b14e3f6.jpg" alt="Produkt 12" onclick="openModal();currentSlide(12)">
-                <img src="https://i.ibb.co/sQmhX1z/0c30867d-421a-4a2c-8f08-c38642c51dbe.jpg" alt="Produkt 13" onclick="openModal();currentSlide(13)">
-                <img src="https://i.ibb.co/SPLp2NQ/9c0e6e9a-99d1-42f2-8fab-777a0c357338.jpg" alt="Produkt 14" onclick="openModal();currentSlide(14)">
-                <img src="https://i.ibb.co/HNVY3fH/163cc827-58e1-4fbb-bb3d-f1129a9966e3.jpg" alt="Produkt 15" onclick="openModal();currentSlide(15)">
-                <img src="https://i.ibb.co/w7s9jd5/b9bd08d4-e853-4778-bfa9-927db987d791.jpg" alt="Produkt 16" onclick="openModal();currentSlide(16)">
-            </div>
-        </section>
-        <section id="oeffnungszeiten">
-            <h2>Öffnungszeiten</h2>
-            <ul>
-                <li>Montag: 09:00–12:15, 14:00–17:00</li>
-                <li>Dienstag: 09:00–12:15</li>
-                <li>Mittwoch: 09:00–12:15, 14:00–17:00</li>
-                <li>Donnerstag: 09:00–12:15, 14:00–17:00</li>
-                <li>Freitag: 09:00–12:15, 14:00–17:00</li>
-                <li>Samstag: 09:00–12:15</li>
-            </ul>
-        </section>
-        <section id="karte">
-            <h2>Karte</h2>
-            <p>Finde uns auf Google Maps:</p>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2668.796840176162!2d9.498176477480797!3d48.01763475950207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479a3570f9a18ce5%3A0x7c56e7ad79db9ed!2sSecound%20Hand%20Boutique%20Saulgau%20f%C3%BCr%20Saulgau!5e0!3m2!1sde!2sde!4v1720872150019!5m2!1sde!2sde" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </section>
+    <main class="container">
+      <section id="willkommen">
+        <h2>Herzlich willkommen bei SHB</h2>
+        <p>
+          Entdecken Sie exklusive Mode und Accessoires aus zweiter Hand in
+          unserer einzigartigen Boutique. Wir bieten Ihnen eine sorgfältig
+          kuratierte Auswahl an hochwertigen Secondhand-Artikeln, die Ihren Stil
+          unterstreichen und gleichzeitig einen Beitrag zur Nachhaltigkeit
+          leisten.
+        </p>
+      </section>
+
+      <section id="botschaft">
+        <h2>Unsere Mission</h2>
+        <p>
+          SHB ist mehr als nur eine Boutique. Wir sind ein gemeinnütziger Laden,
+          der sich der Unterstützung lokaler Wohltätigkeitsorganisationen in Bad
+          Saulgau verschrieben hat. Alle Gewinne, die nach Abzug der
+          Betriebskosten übrig bleiben, fließen direkt in wohltätige Projekte in
+          unserer Gemeinde. Indem Sie bei uns einkaufen, tragen Sie nicht nur zu
+          einem nachhaltigeren Lebensstil bei, sondern unterstützen auch
+          wichtige Initiativen in unserer Stadt.
+        </p>
+      </section>
+
+      <section id="produkte">
+        <h2>Unsere Produkte</h2>
+        <div class="gallery">
+          <img
+            src="https://i.ibb.co/0CLJ8Nw/07cacf1b-db96-49e6-ada5-0bed67489051.jpg"
+            alt="Produkt 1"
+            onclick="openModal();currentSlide(1)"
+          />
+          <img
+            src="https://i.ibb.co/KKKmQ0M/4bebee8b-5e82-4486-8b8c-ecdd08264a1a.jpg"
+            alt="Produkt 2"
+            onclick="openModal();currentSlide(2)"
+          />
+          <img
+            src="https://i.ibb.co/J2hznR5/64ecda43-2df4-410a-9444-c779c9601ac0.jpg"
+            alt="Produkt 3"
+            onclick="openModal();currentSlide(3)"
+          />
+          <img
+            src="https://i.ibb.co/LgG8XnZ/a122d3a7-e4b1-482a-a902-30aa5b8bab47.jpg"
+            alt="Produkt 4"
+            onclick="openModal();currentSlide(4)"
+          />
+          <img
+            src="https://i.ibb.co/D83XSd1/875259f2-0fa7-411a-b880-42d5ea012a88.jpg"
+            alt="Produkt 5"
+            onclick="openModal();currentSlide(5)"
+          />
+          <img
+            src="https://i.ibb.co/FnPRyns/c82f634a-7a0d-49a7-a92d-13414085b29e.jpg"
+            alt="Produkt 6"
+            onclick="openModal();currentSlide(6)"
+          />
+          <img
+            src="https://i.ibb.co/Dz8VXJz/f48abac9-ed3d-4fdd-afc3-6989ee075330.jpg"
+            alt="Produkt 7"
+            onclick="openModal();currentSlide(7)"
+          />
+          <img
+            src="https://i.ibb.co/brPgQTz/abfd36cb-8c86-41a0-8502-185d1ef1d89a.jpg"
+            alt="Produkt 8"
+            onclick="openModal();currentSlide(8)"
+          />
+        </div>
+      </section>
+
+      <section id="oeffnungszeiten">
+        <h2>Öffnungszeiten</h2>
+        <ul class="hours-list">
+          <li>Montag: 09:00–12:00, 14:00–17:00</li>
+          <li>Dienstag: 09:00–12:00</li>
+          <li>Mittwoch: 09:00–12:00, 14:00–17:00</li>
+          <li>Donnerstag: 09:00–12:00, 14:00–17:00</li>
+          <li>Freitag: 09:00–12:00, 14:00–17:00</li>
+          <li>Samstag: 09:00–12:00</li>
+          <li>Sonntag: Geschlossen</li>
+        </ul>
+      </section>
+
+      <section id="karte">
+        <h2>Finden Sie uns</h2>
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2668.796840176162!2d9.498176477480797!3d48.01763475950207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479a3570f9a18ce5%3A0x7c56e7ad79db9ed!2sSecound%20Hand%20Boutique%20Saulgau%20f%C3%BCr%20Saulgau!5e0!3m2!1sde!2sde!4v1720872150019!5m2!1sde!2sde"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </section>
     </main>
+
     <footer>
-        <p>&copy; 2023 Unsere Boutique. Alle Rechte vorbehalten.</p>
+      <div class="container">
+        <p>&copy; 2024 SHB - Saulgau für Saulgau. Alle Rechte vorbehalten.</p>
+      </div>
     </footer>
+
     <div id="myModal" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="img01">
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img class="modal-content" id="img01" />
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div>
+
     <script>
-        // Cookie notification
-        window.onload = function() {
-            let consent = localStorage.getItem('cookieConsent');
-            if (!consent) {
-                let consentBanner = document.createElement('div');
-                consentBanner.innerHTML = `
-                    <div style="background-color: #FFD700; color: #121212; padding: 1em; text-align: center; position: fixed; bottom: 0; width: 100%; z-index: 1000;">
-                        Diese Webseite verwendet Cookies, um sicherzustellen, dass Sie die beste Erfahrung auf unserer Webseite erhalten.
-                        <button onclick="acceptCookies()">Akzeptieren</button>
-                        <button onclick="declineCookies()">Ablehnen</button>
-                    </div>`;
-                document.body.appendChild(consentBanner);
-            }
+      window.onload = function () {
+        let consent = localStorage.getItem("cookieConsent");
+        if (!consent) {
+          showConsentBanner();
         }
+      };
 
-        function acceptCookies() {
-            localStorage.setItem('cookieConsent', 'accepted');
-            document.querySelector('[style*="position: fixed"]').remove();
+      function showConsentBanner() {
+        const consentBanner = document.createElement("div");
+        consentBanner.id = "cookie-consent";
+        consentBanner.style.cssText = `
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background-color: #1E1E1E;
+                color: #E0E0E0;
+                padding: 15px;
+                text-align: center;
+                z-index: 9999;
+            `;
+        consentBanner.innerHTML = `
+                <p>Diese Webseite verwendet Cookies, um sicherzustellen, dass Sie die beste Erfahrung auf unserer Webseite erhalten.</p>
+                <button onclick="acceptCookies()" style="background-color: #FFD700; color: #121212; border: none; padding: 10px 20px; margin: 0 10px; cursor: pointer; font-weight: bold;">Akzeptieren</button>
+                <button onclick="declineCookies()" style="background-color: #FFD700; color: #121212; border: none; padding: 10px 20px; margin: 0 10px; cursor: pointer; font-weight: bold;">Ablehnen</button>
+            `;
+        document.body.appendChild(consentBanner);
+      }
+
+      function acceptCookies() {
+        localStorage.setItem("cookieConsent", "accepted");
+        hideBanner();
+
+        setCookie("exampleCookie", "someValue", 365);
+      }
+
+      function declineCookies() {
+        localStorage.setItem("cookieConsent", "declined");
+        hideBanner();
+      }
+
+      function hideBanner() {
+        const banner = document.getElementById("cookie-consent");
+        if (banner) {
+          banner.style.display = "none";
         }
+      }
 
-        function declineCookies() {
-            localStorage.setItem('cookieConsent', 'declined');
-            document.querySelector('[style*="position: fixed"]').remove();
+      function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+          let date = new Date();
+          date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+          expires = "; expires=" + date.toUTCString();
         }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+      }
 
-        // Modal image gallery
-        var slideIndex = 1;
-
-        function openModal() {
-            document.getElementById("myModal").style.display = "block";
+      function getCookie(name) {
+        let nameEQ = name + "=";
+        let ca = document.cookie.split(";");
+        for (let i = 0; i < ca.length; i++) {
+          let c = ca[i];
+          while (c.charAt(0) == " ") c = c.substring(1, c.length);
+          if (c.indexOf(nameEQ) == 0)
+            return c.substring(nameEQ.length, c.length);
         }
-
-        function closeModal() {
-            document.getElementById("myModal").style.display = "none";
-        }
-
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
-        }
-
-        function showSlides(n) {
-            var i;
-            var slides = document.getElementsByClassName("carousel-img");
-            if (n > slides.length) {slideIndex = 1}
-            if (n < 1) {slideIndex = slides.length}
-            var modalImg = document.getElementById("img01");
-            modalImg.src = slides[slideIndex-1].src;
-        }
-
-        // Set the first slide as the modal image source on load
-        window.onload = function() {
-            showSlides(slideIndex);
-        };
+        return null;
+      }
     </script>
-</body>
+  </body>
 </html>
