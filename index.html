@@ -3,123 +3,109 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SHB - Saulgau für Saulgau</title>
+    <title>SHB – Saulgau für Saulgau</title>
     <style>
+      /* Farbvariablen und Reset */
       :root {
         --primary-color: #ffd700;
         --background-color: #121212;
         --text-color: #e0e0e0;
         --secondary-background: #1e1e1e;
       }
-
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
       body {
         background-color: var(--background-color);
         color: var(--text-color);
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        margin: 0;
-        padding: 0;
         line-height: 1.6;
       }
-
       .container {
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 20px;
       }
-
       header {
         background-color: var(--secondary-background);
         padding: 20px 0;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       }
-
       .header-content {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-wrap: wrap;
       }
-
       .logo h1 {
-        margin: 0;
         font-size: 2.5rem;
         color: var(--primary-color);
       }
-
       .logo h2 {
-        margin: 0;
         font-size: 1.2rem;
         color: var(--text-color);
       }
-
       nav ul {
-        list-style-type: none;
-        padding: 0;
+        list-style: none;
         display: flex;
+        flex-wrap: wrap;
       }
-
       nav ul li {
-        margin-left: 20px;
+        margin: 0 15px;
       }
-
       nav ul li a {
         color: var(--text-color);
         text-decoration: none;
         font-weight: bold;
         transition: color 0.3s ease;
       }
-
-      nav ul li a:hover {
+      nav ul li a:hover,
+      nav ul li a:focus {
         color: var(--primary-color);
       }
-
       main {
         padding: 40px 0;
       }
-
       section {
         margin-bottom: 40px;
       }
-
       h2 {
-        color: var(--primary-color);
         font-size: 2rem;
         margin-bottom: 20px;
+        color: var(--primary-color);
       }
-
       .gallery {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
         gap: 10px;
       }
-
       .gallery img {
         width: 100%;
         height: auto;
-        border-radius: 15px;
-        transition: transform 0.3s ease;
+        border-radius: 10px;
         cursor: pointer;
+        transition: transform 0.3s ease;
       }
-
-      .gallery img:hover {
+      .gallery img:hover,
+      .gallery img:focus {
         transform: scale(1.05);
       }
-
       .hours-list {
-        list-style-type: none;
-        padding: 0;
+        list-style: none;
+        padding-left: 0;
       }
-
       .hours-list li {
         margin-bottom: 10px;
       }
-
       .map-container {
         position: relative;
         padding-bottom: 56.25%;
         height: 0;
         overflow: hidden;
+        border-radius: 10px;
       }
-
       .map-container iframe {
         position: absolute;
         top: 0;
@@ -128,15 +114,13 @@
         height: 100%;
         border: 0;
       }
-
       footer {
         background-color: var(--secondary-background);
-        color: var(--text-color);
         text-align: center;
         padding: 20px 0;
-        margin-top: 40px;
+        font-size: 0.9rem;
       }
-
+      /* Modal für die Galerie */
       .modal {
         display: none;
         position: fixed;
@@ -146,69 +130,75 @@
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.9);
+        align-items: center;
+        justify-content: center;
       }
-
-      .modal-content {
-        margin: auto;
-        display: block;
-        max-width: 80%;
-        max-height: 80%;
+      .modal img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 10px;
       }
-
-      .close {
+      .modal .close,
+      .modal .prev,
+      .modal .next {
         position: absolute;
-        top: 15px;
-        right: 35px;
         color: #f1f1f1;
-        font-size: 40px;
+        font-size: 2rem;
         font-weight: bold;
-        transition: 0.3s;
-      }
-
-      .close:hover,
-      .close:focus {
-        color: #bbb;
-        text-decoration: none;
         cursor: pointer;
-      }
-
-      .prev,
-      .next {
-        cursor: pointer;
-        position: absolute;
-        top: 50%;
-        width: auto;
-        padding: 16px;
-        margin-top: -50px;
-        color: white;
-        font-weight: bold;
-        font-size: 20px;
-        transition: 0.6s ease;
-        border-radius: 0 3px 3px 0;
         user-select: none;
-        -webkit-user-select: none;
       }
-
-      .next {
+      .modal .close {
+        top: 20px;
+        right: 30px;
+      }
+      .modal .prev {
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .modal .next {
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .modal .close:hover,
+      .modal .prev:hover,
+      .modal .next:hover {
+        color: var(--primary-color);
+      }
+      /* Cookie-Banner */
+      #cookie-consent {
+        position: fixed;
+        bottom: 0;
+        left: 0;
         right: 0;
-        border-radius: 3px 0 0 3px;
+        background-color: var(--secondary-background);
+        color: var(--text-color);
+        padding: 15px;
+        text-align: center;
+        z-index: 9999;
+        font-size: 0.9rem;
       }
-
-      .prev:hover,
-      .next:hover {
-        background-color: rgba(0, 0, 0, 0.8);
+      #cookie-consent button {
+        background-color: var(--primary-color);
+        color: var(--background-color);
+        border: none;
+        padding: 10px 20px;
+        margin: 0 10px;
+        cursor: pointer;
+        font-weight: bold;
+        border-radius: 5px;
       }
-
       @media (max-width: 768px) {
         .header-content {
           flex-direction: column;
           text-align: center;
         }
-
         nav ul {
-          margin-top: 20px;
+          margin-top: 15px;
+          justify-content: center;
         }
-
         nav ul li {
           margin: 0 10px;
         }
@@ -221,31 +211,34 @@
         <div class="logo">
           <h1>SHB</h1>
           <h2>Saulgau für Saulgau</h2>
-
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#willkommen">Willkommen</a></li>
+            <li><a href="#produkte">Produkte</a></li>
+            <li><a href="#botschaft">Mission</a></li>
+            <li><a href="#oeffnungszeiten">Öffnungszeiten</a></li>
+            <li><a href="#karte">Kontakt</a></li>
+          </ul>
+        </nav>
       </div>
     </header>
+
     <main class="container">
       <section id="willkommen">
         <h2>Herzlich willkommen bei SHB</h2>
         <p>
-          Entdecken Sie exklusive Mode und Accessoires aus zweiter Hand in
-          unserer einzigartigen Boutique. Wir bieten Ihnen eine sorgfältig
-          kuratierte Auswahl an hochwertigen Secondhand-Artikeln, die Ihren Stil
-          unterstreichen und gleichzeitig einen Beitrag zur Nachhaltigkeit
-          leisten.
+          Entdecken Sie exklusive Mode und Accessoires aus zweiter Hand in unserer Boutique.
+          Wir bieten Ihnen eine sorgfältig kuratierte Auswahl an hochwertigen Secondhand-Artikeln,
+          die Ihren Stil unterstreichen und einen Beitrag zur Nachhaltigkeit leisten.
         </p>
       </section>
 
       <section id="botschaft">
         <h2>Unsere Mission</h2>
         <p>
-          SHB ist mehr als nur eine Boutique. Wir sind ein gemeinnütziger Laden,
-          der sich der Unterstützung lokaler Wohltätigkeitsorganisationen in Bad
-          Saulgau verschrieben hat. Alle Gewinne, die nach Abzug der
-          Betriebskosten übrig bleiben, fließen direkt in wohltätige Projekte in
-          unserer Gemeinde. Indem Sie bei uns einkaufen, tragen Sie nicht nur zu
-          einem nachhaltigeren Lebensstil bei, sondern unterstützen auch
-          wichtige Initiativen in unserer Stadt.
+          SHB ist mehr als nur eine Boutique. Wir unterstützen lokale Wohltätigkeitsorganisationen in Bad Saulgau.
+          Alle Gewinne, die nach Abzug der Betriebskosten übrig bleiben, fließen direkt in wohltätige Projekte unserer Gemeinde.
         </p>
       </section>
 
@@ -253,65 +246,75 @@
         <h2>Unsere Produkte</h2>
         <div class="gallery">
           <img
-            src="https://i.ibb.co/0CLJ8Nw/07cacf1b-db96-49e6-ada5-0bed67489051.jpg"
+            src="https://lh3.googleusercontent.com/p/AF1QipMuIKJ3WK30hwjvFsBFsB7HAS9ehPcGNpYQTAo7"
             alt="Produkt 1"
-            onclick="openModal();currentSlide(1)"
+            tabindex="0"
+            onclick="openModal(); currentSlide(1)"
           />
           <img
             src="https://i.ibb.co/KKKmQ0M/4bebee8b-5e82-4486-8b8c-ecdd08264a1a.jpg"
             alt="Produkt 2"
-            onclick="openModal();currentSlide(2)"
+            tabindex="0"
+            onclick="openModal(); currentSlide(2)"
           />
           <img
             src="https://i.ibb.co/J2hznR5/64ecda43-2df4-410a-9444-c779c9601ac0.jpg"
             alt="Produkt 3"
-            onclick="openModal();currentSlide(3)"
+            tabindex="0"
+            onclick="openModal(); currentSlide(3)"
           />
           <img
-            src="https://i.ibb.co/LgG8XnZ/a122d3a7-e4b1-482a-a902-30aa5b8bab47.jpg"
+            src="https://lh3.googleusercontent.com/p/AF1QipNsqMv4Qda_mDA0QQiYgRLsWY4Qq8FmOdxIUSiy"
             alt="Produkt 4"
-            onclick="openModal();currentSlide(4)"
+            tabindex="0"
+            onclick="openModal(); currentSlide(4)"
           />
           <img
             src="https://i.ibb.co/D83XSd1/875259f2-0fa7-411a-b880-42d5ea012a88.jpg"
             alt="Produkt 5"
-            onclick="openModal();currentSlide(5)"
+            tabindex="0"
+            onclick="openModal(); currentSlide(5)"
           />
           <img
             src="https://i.ibb.co/FnPRyns/c82f634a-7a0d-49a7-a92d-13414085b29e.jpg"
             alt="Produkt 6"
-            onclick="openModal();currentSlide(6)"
+            tabindex="0"
+            onclick="openModal(); currentSlide(6)"
           />
           <img
-            src="https://i.ibb.co/Dz8VXJz/f48abac9-ed3d-4fdd-afc3-6989ee075330.jpg"
+            src="https://lh3.googleusercontent.com/p/AF1QipO8SbKXVU7-UqkdI5OpshMjoD9TFenpcH96K6Pp"
             alt="Produkt 7"
-            onclick="openModal();currentSlide(7)"
+            tabindex="0"
+            onclick="openModal(); currentSlide(7)"
           />
           <img
             src="https://i.ibb.co/brPgQTz/abfd36cb-8c86-41a0-8502-185d1ef1d89a.jpg"
             alt="Produkt 8"
-            onclick="openModal();currentSlide(8)"
-                    />
+            tabindex="0"
+            onclick="openModal(); currentSlide(8)"
+          />
           <img
-            src="https://i.ibb.co/brPgQTz/abfd36cb-8c86-41a0-8502-185d1ef1d89a.jpg"
-            alt="Produkt 8"
-            onclick="openModal();currentSlide(8)"
+            src="https://lh3.googleusercontent.com/p/AF1QipNAn1BZ6OmZkiddbfar7E41S2Z5BnmtBnCdxk24=s680-w680-h510"
+            alt="Produkt 9"
+            tabindex="0"
+            onclick="openModal(); currentSlide(8)"
           />
         </div>
       </section>
 
-      <section id="oeffnungszeiten">
-        <h2>Öffnungszeiten</h2>
-        <ul class="hours-list">
-          <li>Montag: 09:00–12:00, 14:00–17:00</li>
-          <li>Dienstag: 09:00–12:00</li>
-          <li>Mittwoch: 09:00–12:00, 14:00–17:00</li>
-          <li>Donnerstag: 09:00–12:00</li>
-          <li>Freitag: 09:00–12:00, 14:00–17:00</li>
-          <li>Samstag: 09:00–12:00</li>
-          <li>Sonntag: Geschlossen</li>
-        </ul>
-      </section>
+<section id="oeffnungszeiten">
+  <h2>Öffnungszeiten</h2>
+  <ul class="hours-list">
+    <li>Samstag: 09:00–12:00</li>
+    <li>Sonntag: Geschlossen</li>
+    <li>Montag: 09:00–12:00, 14:00–17:00</li>
+    <li>Dienstag: 09:00–12:00</li>
+    <li>Mittwoch: 09:00–12:00, 14:00–17:00</li>
+    <li>Donnerstag: 09:00–12:00</li>
+    <li>Freitag: 09:00–12:00, 14:00–17:00</li>
+  </ul>
+</section>
+
 
       <section id="karte">
         <h2>Finden Sie uns</h2>
@@ -328,86 +331,78 @@
 
     <footer>
       <div class="container">
-        <p>&copy; 2024 SHB - Saulgau für Saulgau. Alle Rechte vorbehalten.</p>
+        <p>&copy; 2025 SHB – Saulgau für Saulgau. Alle Rechte vorbehalten.</p>
       </div>
     </footer>
 
-    <div id="myModal" class="modal">
+    <!-- Modal für die Bildgalerie -->
+    <div id="myModal" class="modal" aria-modal="true" role="dialog">
       <span class="close" onclick="closeModal()">&times;</span>
-      <img class="modal-content" id="img01" />
+      <img class="modal-content" id="img01" alt="Vergrößertes Produktbild" />
       <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
       <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div>
 
+    <!-- Cookie-Banner -->
+    <div id="cookie-consent" style="display: none;">
+      <p>Diese Webseite verwendet Cookies, um Ihnen die beste Erfahrung zu bieten.</p>
+      <button onclick="acceptCookies()">Akzeptieren</button>
+      <button onclick="declineCookies()">Ablehnen</button>
+    </div>
+
     <script>
+      /* Modal-Funktionalität */
+      let slideIndex = 1;
+      function openModal() {
+        document.getElementById("myModal").style.display = "flex";
+        showSlides(slideIndex);
+      }
+      function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+      }
+      function plusSlides(n) {
+        showSlides((slideIndex += n));
+      }
+      function currentSlide(n) {
+        showSlides((slideIndex = n));
+      }
+      function showSlides(n) {
+        const slides = document.querySelectorAll(".gallery img");
+        if (n > slides.length) {
+          slideIndex = 1;
+        }
+        if (n < 1) {
+          slideIndex = slides.length;
+        }
+        document.getElementById("img01").src = slides[slideIndex - 1].src;
+      }
+
+      /* Cookie-Banner */
       window.onload = function () {
-        let consent = localStorage.getItem("cookieConsent");
-        if (!consent) {
-          showConsentBanner();
+        if (!localStorage.getItem("cookieConsent")) {
+          document.getElementById("cookie-consent").style.display = "block";
         }
       };
-
-      function showConsentBanner() {
-        const consentBanner = document.createElement("div");
-        consentBanner.id = "cookie-consent";
-        consentBanner.style.cssText = `
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                background-color: #1E1E1E;
-                color: #E0E0E0;
-                padding: 15px;
-                text-align: center;
-                z-index: 9999;
-            `;
-        consentBanner.innerHTML = `
-                <p>Diese Webseite verwendet Cookies, um sicherzustellen, dass Sie die beste Erfahrung auf unserer Webseite erhalten.</p>
-                <button onclick="acceptCookies()" style="background-color: #FFD700; color: #121212; border: none; padding: 10px 20px; margin: 0 10px; cursor: pointer; font-weight: bold;">Akzeptieren</button>
-                <button onclick="declineCookies()" style="background-color: #FFD700; color: #121212; border: none; padding: 10px 20px; margin: 0 10px; cursor: pointer; font-weight: bold;">Ablehnen</button>
-            `;
-        document.body.appendChild(consentBanner);
-      }
-
       function acceptCookies() {
         localStorage.setItem("cookieConsent", "accepted");
-        hideBanner();
-
         setCookie("exampleCookie", "someValue", 365);
+        hideConsent();
       }
-
       function declineCookies() {
         localStorage.setItem("cookieConsent", "declined");
-        hideBanner();
+        hideConsent();
       }
-
-      function hideBanner() {
-        const banner = document.getElementById("cookie-consent");
-        if (banner) {
-          banner.style.display = "none";
-        }
+      function hideConsent() {
+        document.getElementById("cookie-consent").style.display = "none";
       }
-
       function setCookie(name, value, days) {
         let expires = "";
         if (days) {
-          let date = new Date();
+          const date = new Date();
           date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
           expires = "; expires=" + date.toUTCString();
         }
         document.cookie = name + "=" + (value || "") + expires + "; path=/";
-      }
-
-      function getCookie(name) {
-        let nameEQ = name + "=";
-        let ca = document.cookie.split(";");
-        for (let i = 0; i < ca.length; i++) {
-          let c = ca[i];
-          while (c.charAt(0) == " ") c = c.substring(1, c.length);
-          if (c.indexOf(nameEQ) == 0)
-            return c.substring(nameEQ.length, c.length);
-        }
-        return null;
       }
     </script>
   </body>
