@@ -2,9 +2,13 @@
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
     <title>SHB – Saulgau für Saulgau</title>
     <style>
+      /* Farbvariablen und Reset */
       :root {
         --primary-color: #ffd700;
         --background-color: #121212;
@@ -21,6 +25,7 @@
         color: var(--text-color);
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         line-height: 1.6;
+        font-size: 18px;
       }
       .container {
         max-width: 1200px;
@@ -75,6 +80,10 @@
         margin-bottom: 20px;
         color: var(--primary-color);
       }
+      p {
+        margin-bottom: 20px;
+      }
+      /* Galerie */
       .gallery {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -91,6 +100,7 @@
       .gallery img:focus {
         transform: scale(1.05);
       }
+      /* Öffnungszeiten */
       .hours-list {
         list-style: none;
         padding-left: 0;
@@ -98,6 +108,7 @@
       .hours-list li {
         margin-bottom: 10px;
       }
+      /* Map-Bereich */
       .map-container {
         position: relative;
         padding-bottom: 56.25%;
@@ -119,6 +130,7 @@
         padding: 20px 0;
         font-size: 0.9rem;
       }
+      /* Modal für die Galerie */
       .modal {
         display: none;
         position: fixed;
@@ -165,6 +177,7 @@
       .modal .next:hover {
         color: var(--primary-color);
       }
+      /* Cookie-Banner */
       #cookie-consent {
         position: fixed;
         bottom: 0;
@@ -187,6 +200,7 @@
         font-weight: bold;
         border-radius: 5px;
       }
+      /* Responsivität für mobile Geräte */
       @media (max-width: 768px) {
         .header-content {
           flex-direction: column;
@@ -197,7 +211,36 @@
           justify-content: center;
         }
         nav ul li {
-          margin: 0 10px;
+          margin: 5px 10px;
+        }
+        h2 {
+          font-size: 1.75rem;
+        }
+      }
+      @media (max-width: 480px) {
+        body {
+          font-size: 16px;
+        }
+        .container {
+          padding: 0 10px;
+        }
+        header {
+          padding: 15px 0;
+        }
+        .logo h1 {
+          font-size: 2rem;
+        }
+        .logo h2 {
+          font-size: 1rem;
+        }
+        nav ul li {
+          margin: 5px 0;
+        }
+        .gallery {
+          grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        }
+        h2 {
+          font-size: 1.5rem;
         }
       }
     </style>
@@ -223,20 +266,20 @@
 
     <main class="container">
       <section id="willkommen">
-        <h2>Herzlich willkommen bei SHB</h2>
+        <h2>Herzlich willkommen bei SHB!</h2>
         <p>
-Entdecken Sie exklusive Mode und Accessoires aus zweiter Hand in unserer Boutique.  
-
-Wir bieten Ihnen eine sorgfältig ausgewählte Kollektion hochwertiger Secondhand-Artikel, die Ihren Stil perfekt unterstreichen und gleichzeitig zur Nachhaltigkeit beitragen.
+          Entdecken Sie exklusive Mode und Accessoires aus zweiter Hand in unserer Boutique.
+          Wir bieten Ihnen eine sorgfältig ausgewählte Kollektion hochwertiger Secondhand-Artikel, die
+          Ihren Stil perfekt unterstreichen und gleichzeitig zur Nachhaltigkeit beitragen.
         </p>
       </section>
 
       <section id="botschaft">
         <h2>Unsere Mission</h2>
         <p>
-SHB ist mehr als nur eine Boutique – wir engagieren uns für die Gemeinschaft in Bad Saulgau.  
-
-Alle Gewinne, die nach Abzug der Betriebskosten verbleiben, fließen direkt in wohltätige Projekte und unterstützen lokale Organisationen.
+          SHB ist mehr als nur eine Boutique – wir engagieren uns für die Gemeinschaft in Bad Saulgau.
+          Alle Gewinne, die nach Abzug der Betriebskosten verbleiben, fließen direkt in wohltätige
+          Projekte und unterstützen lokale Organisationen.
         </p>
       </section>
 
@@ -300,19 +343,18 @@ Alle Gewinne, die nach Abzug der Betriebskosten verbleiben, fließen direkt in w
         </div>
       </section>
 
-<section id="oeffnungszeiten">
-  <h2>Öffnungszeiten</h2>
-  <ul class="hours-list">
-    <li>Samstag: 09:00–12:00</li>
-    <li>Sonntag: Geschlossen</li>
-    <li>Montag: 09:00–12:00, 14:00–17:00</li>
-    <li>Dienstag: 09:00–12:00</li>
-    <li>Mittwoch: 09:00–12:00, 14:00–17:00</li>
-    <li>Donnerstag: 09:00–12:00</li>
-    <li>Freitag: 09:00–12:00, 14:00–17:00</li>
-  </ul>
-</section>
-
+      <section id="oeffnungszeiten">
+        <h2>Öffnungszeiten</h2>
+        <ul class="hours-list">
+          <li>Samstag: 09:00–12:00</li>
+          <li>Sonntag: Geschlossen</li>
+          <li>Montag: 09:00–12:00, 14:00–17:00</li>
+          <li>Dienstag: 09:00–12:00</li>
+          <li>Mittwoch: 09:00–12:00, 14:00–17:00</li>
+          <li>Donnerstag: 09:00–12:00</li>
+          <li>Freitag: 09:00–12:00, 14:00–17:00</li>
+        </ul>
+      </section>
 
       <section id="karte">
         <h2>Finden Sie uns</h2>
@@ -333,13 +375,15 @@ Alle Gewinne, die nach Abzug der Betriebskosten verbleiben, fließen direkt in w
       </div>
     </footer>
 
+    <!-- Modal für die Bildgalerie -->
     <div id="myModal" class="modal" aria-modal="true" role="dialog">
       <span class="close" onclick="closeModal()">&times;</span>
       <img class="modal-content" id="img01" alt="Vergrößertes Produktbild" />
       <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
       <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div>
-    
+
+    <!-- Cookie-Banner -->
     <div id="cookie-consent" style="display: none;">
       <p>Diese Webseite verwendet Cookies, um Ihnen die beste Erfahrung zu bieten.</p>
       <button onclick="acceptCookies()">Akzeptieren</button>
@@ -347,6 +391,7 @@ Alle Gewinne, die nach Abzug der Betriebskosten verbleiben, fließen direkt in w
     </div>
 
     <script>
+      /* Modal-Funktionalität */
       let slideIndex = 1;
       function openModal() {
         document.getElementById("myModal").style.display = "flex";
@@ -371,7 +416,8 @@ Alle Gewinne, die nach Abzug der Betriebskosten verbleiben, fließen direkt in w
         }
         document.getElementById("img01").src = slides[slideIndex - 1].src;
       }
-      
+
+      /* Cookie-Banner */
       window.onload = function () {
         if (!localStorage.getItem("cookieConsent")) {
           document.getElementById("cookie-consent").style.display = "block";
